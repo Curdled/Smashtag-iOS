@@ -8,7 +8,7 @@
 
 import Foundation
 
-class mostRecentTwitterSearchesDataSource {
+class MostRecentTwitterSearchesDataSource {
     
     private static let defaults = NSUserDefaults.standardUserDefaults()
     
@@ -28,9 +28,7 @@ class mostRecentTwitterSearchesDataSource {
     
     static func appendValue(string: String) {
         var newArray = mostRecentTwitterSearches
-        if let index = newArray.indexOf(string) {
-            newArray.removeAtIndex(index)
-        }
+        newArray = newArray.filter { $0 != string }
         newArray.insert(string, atIndex: 0)
         mostRecentTwitterSearches = newArray
     }
