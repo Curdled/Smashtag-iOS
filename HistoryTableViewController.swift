@@ -10,6 +10,18 @@ import UIKit
 
 class HistoryTableViewController: UITableViewController {
 
+    var mostRecentSearches: [String]? {
+        didSet {
+            print("here")
+            tableView.reloadData()
+        }
+    }
+    
+    struct Storyboard {
+        static let ShowSearch = "Show Search"
+        static let HistoryTableCell = "HistoryTableCell"
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,32 +32,32 @@ class HistoryTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return mostRecentSearches?.count ?? 0
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        mostRecentSearches?.removeAll()
+        mostRecentSearches = MostRecentTwitterSearchesDataSource.mostRecentTwitterSearches
     }
 
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier(Storyboard.HistoryTableCell, forIndexPath: indexPath)
 
-        // Configure the cell...
+        if let searches = mostRecentSearches {
+            cell.textLabel?.text = searches[indexPath.row]
+        }
 
         return cell
     }
-    */
+
 
     /*
     // Override to support conditional editing of the table view.
@@ -82,14 +94,27 @@ class HistoryTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        var destination = segue.destinationViewController
+        if let navCon = destination as? UINavigationController {
+            if let visible = navCon.visibleViewController {
+                destination = visible
+            }
+        }
+        switch segue.identifier! {
+        case Storyboard.ShowSearch:
+            if let ttvc = destination as? TweetTableViewController {
+                if let cell = sender as? UITableViewCell {
+                    ttvc.searchText = cell.textLabel?.text
+                }
+            }
+        default: break
+        }
     }
-    */
+
 
 }
