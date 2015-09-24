@@ -204,14 +204,6 @@ class MentionTableViewController: UITableViewController {
                         isvc.image = image
                         isvc.edgesForExtendedLayout = UIRectEdge.None;
                     }
-//                    if let indexPath = tableView.indexPathForCell(imageCell) {
-//                        let mentionItem = info[indexPath.section].items[indexPath.row]
-//                        switch mentionItem {
-//                        case .Image(let url, _):
-//                            isvc.imageURL = url
-//                        default: break
-//                        }
-//                    }
                 }
             }
             default: break

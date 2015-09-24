@@ -16,6 +16,9 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate
 
     var searchText: String? = "#stanford" {
         didSet {
+            if searchText != nil {
+                mostRecentTwitterSearchesDataSource.appendValue(searchText!)
+            }
             lastSuccessfulRequest = nil
             searchTextField?.text = searchText
             tweets.removeAll()
