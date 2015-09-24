@@ -24,12 +24,31 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate
         }
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        var destination = segue.destinationViewController
+         if let navCon = destination as? UINavigationController {
+            if let visible = navCon.visibleViewController {
+                destination = visible
+            }
+        }
+        if let mtvc = destination as? MentionTableViewController {
+            switch segue.identifier! {
+                case "Show Mention":
+                    if let cell = sender as? TweetTableViewCell {
+                        mtvc.currentTweet = cell.tweet
+                    }
+                default: break
+            }
+        }
+    }
+    
     // MARK: - View Controller Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.estimatedRowHeight = tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
+
         refresh()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false

@@ -32,7 +32,7 @@ class TweetTableViewCell: UITableViewCell
 
         if let tweet = self.tweet
         {
-            if let var text = tweet.text {
+            if var text = tweet.text {
             for _ in tweet.media {
                 text += " 📷"
             }
@@ -46,9 +46,16 @@ class TweetTableViewCell: UITableViewCell
             tweetTextLabel?.attributedText = newTweet
             tweetScreenNameLabel?.text = "\(tweet.user)" // tweet.user.description
 
+                
             if let profileImageURL = tweet.user.profileImageURL {
-                if let imageData = NSData(contentsOfURL: profileImageURL) { // blocks main thread!
-                    tweetProfileImageView?.image = UIImage(data: imageData)
+                let qos = Int(QOS_CLASS_USER_INITIATED.rawValue)
+                let queue = dispatch_get_global_queue(qos, 0)
+                dispatch_async(queue) {
+                    if let imageData = NSData(contentsOfURL: profileImageURL) {
+                        dispatch_async(dispatch_get_main_queue()) {
+                            self.tweetProfileImageView?.image = UIImage(data: imageData)
+                        }
+                    }
                 }
             }
 
