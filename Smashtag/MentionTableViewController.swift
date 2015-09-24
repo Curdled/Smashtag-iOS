@@ -12,13 +12,20 @@ class MentionTableViewController: UITableViewController {
     
     // MARK: - Data Source
     
+    struct Constants {
+        static let Image = "Image"
+        static let URLs = "URLs"
+        static let Hashtag = "Hashtag"
+        static let User = "User"
+    }
+    
     var currentTweet: Tweet? {
         didSet {
             if let tweet = currentTweet {
                 if !tweet.media.isEmpty {
                     info.append(
                         Mention(
-                            title: "Image",
+                            title: Constants.Image,
                             items: tweet.media.map( { .Image($0.url, $0.aspectRatio) })
                         )
                     )
@@ -26,7 +33,7 @@ class MentionTableViewController: UITableViewController {
                 if !tweet.urls.isEmpty {
                     info.append(
                         Mention(
-                            title: "URLs",
+                            title: Constants.URLs,
                             items: tweet.urls.map({ .Text($0.keyword) })
                         )
                     )
@@ -34,7 +41,7 @@ class MentionTableViewController: UITableViewController {
                 if !tweet.hashtags.isEmpty {
                     info.append(
                         Mention(
-                            title: "Hashtag",
+                            title: Constants.Hashtag,
                             items: tweet.hashtags.map({ .Text($0.keyword) })
                         )
                     )
@@ -42,7 +49,7 @@ class MentionTableViewController: UITableViewController {
                 if !tweet.userMentions.isEmpty {
                     info.append(
                         Mention(
-                            title: "User",
+                            title: Constants.User,
                             items: tweet.userMentions.map({ .Text($0.keyword) })
                         )
                     )
@@ -78,9 +85,11 @@ class MentionTableViewController: UITableViewController {
         
     }
     
-    struct CellIdentifier {
+    struct Storyboard {
         static let imageCellIdentifier = "ImageTableCell"
         static let textCellIdentifier = "TextTableCell"
+        
+        static let showSearch = "Show Search"
     }
 
     
@@ -114,11 +123,11 @@ class MentionTableViewController: UITableViewController {
         
         switch info[indexPath.section].items[indexPath.row] {
         case .Text(let text):
-            let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier.textCellIdentifier, forIndexPath: indexPath)
+            let cell = tableView.dequeueReusableCellWithIdentifier(Storyboard.textCellIdentifier, forIndexPath: indexPath)
             cell.textLabel?.text = text
             return cell
         case .Image(let url, _):
-            let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier.imageCellIdentifier, forIndexPath: indexPath) as! ImageTableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier(Storyboard.imageCellIdentifier, forIndexPath: indexPath) as! ImageTableViewCell
             cell.imageURL = url
             return cell
         }
@@ -169,14 +178,45 @@ class MentionTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
+        var destination = segue.destinationViewController
+        if let navCon = destination as? UINavigationController {
+            if let visible = navCon.visibleViewController {
+                destination = visible
+            }
+        }
+        if let ttvc = destination as? TweetTableViewController {
+            switch segue.identifier! {
+            case Storyboard.showSearch:
+                if let cell = sender as? UITableViewCell {
+                    ttvc.searchText = cell.textLabel?.text
+                }
+            default: break
+            }
+        }
     }
-    */
-
+    
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        if let textCell = sender as? UITableViewCell {
+            if let indexPath =  tableView.indexPathForCell(textCell) {
+                switch info[indexPath.section].title {
+                case Constants.Hashtag: fallthrough
+                case Constants.User:
+                    return true
+                case Constants.URLs:
+                    if let text = textCell.textLabel?.text {
+                        if let url = NSURL(string: text) {
+                            UIApplication.sharedApplication().openURL(url)
+                        }
+                    }
+                default: break
+                }
+            }
+        }
+        return false
+    }
 }
