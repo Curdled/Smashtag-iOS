@@ -46,14 +46,14 @@ class MentionTableViewController: UITableViewController {
                         )
                     )
                 }
-                if !tweet.userMentions.isEmpty {
-                    info.append(
-                        Mention(
-                            title: Constants.User,
-                            items: tweet.userMentions.map({ .Text($0.keyword) })
-                        )
+                var users = tweet.userMentions.map({ MentionItem.Text($0.keyword) })
+                users.append(MentionItem.Text("@\(tweet.user.screenName)"))
+                info.append(
+                    Mention(
+                        title: Constants.User,
+                        items: users
                     )
-                }
+                )
             }
         }
     }
