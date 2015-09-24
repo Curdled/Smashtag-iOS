@@ -12,7 +12,6 @@ class HistoryTableViewController: UITableViewController {
 
     var mostRecentSearches: [String]? {
         didSet {
-            print("here")
             tableView.reloadData()
         }
     }
