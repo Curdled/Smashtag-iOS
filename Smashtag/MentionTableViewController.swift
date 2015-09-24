@@ -127,10 +127,9 @@ class MentionTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
          switch info[indexPath.section].items[indexPath.row] {
             case .Image(_, let aspectRatio):
-            print(tableView.frame)
                 return tableView.bounds.size.width / CGFloat(aspectRatio)
-         default:
-            return UITableViewAutomaticDimension
+            default:
+                return UITableViewAutomaticDimension
          }
     }
     
