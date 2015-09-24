@@ -5,6 +5,8 @@
       <sourceFolder url="file://$MODULE_DIR$/Smashtag/AppDelegate.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Smashtag/Base.lproj/LaunchScreen.xib" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Smashtag/Base.lproj/Main.storyboard" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Smashtag/ImageScrollViewController.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Smashtag/ImageTableViewCell.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Smashtag/Images.xcassets" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Smashtag/Info.plist" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Smashtag/MentionTableViewController.swift" isTestSource="false" />

@@ -24,23 +24,7 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        var destination = segue.destinationViewController
-         if let navCon = destination as? UINavigationController {
-            if let visible = navCon.visibleViewController {
-                destination = visible
-            }
-        }
-        if let mtvc = destination as? MentionTableViewController {
-            switch segue.identifier! {
-                case "Show Mention":
-                    if let cell = sender as? TweetTableViewCell {
-                        mtvc.currentTweet = cell.tweet
-                    }
-                default: break
-            }
-        }
-    }
+
     
     // MARK: - View Controller Lifecycle
 
@@ -169,13 +153,25 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
+        var destination = segue.destinationViewController
+        if let navCon = destination as? UINavigationController {
+            if let visible = navCon.visibleViewController {
+                destination = visible
+            }
+        }
+        if let mtvc = destination as? MentionTableViewController {
+            switch segue.identifier! {
+            case "Show Mention":
+                if let cell = sender as? TweetTableViewCell {
+                    mtvc.currentTweet = cell.tweet
+                }
+            default: break
+            }
+        }
     }
-    */
+    
 }

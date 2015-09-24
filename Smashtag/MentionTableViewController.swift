@@ -90,6 +90,7 @@ class MentionTableViewController: UITableViewController {
         static let textCellIdentifier = "TextTableCell"
         
         static let showSearch = "Show Search"
+        static let showImage = "Show Image"
     }
 
     
@@ -189,33 +190,56 @@ class MentionTableViewController: UITableViewController {
                 destination = visible
             }
         }
+        switch segue.identifier! {
+        case Storyboard.showSearch:
         if let ttvc = destination as? TweetTableViewController {
-            switch segue.identifier! {
-            case Storyboard.showSearch:
                 if let cell = sender as? UITableViewCell {
                     ttvc.searchText = cell.textLabel?.text
                 }
-            default: break
             }
+        case Storyboard.showImage:
+            if let imageCell = sender as? ImageTableViewCell {
+                if let isvc = destination as? ImageScrollViewController {
+                    if let image = imageCell.mentionImage?.image {
+                        isvc.image = image
+                        isvc.edgesForExtendedLayout = UIRectEdge.None;
+                    }
+//                    if let indexPath = tableView.indexPathForCell(imageCell) {
+//                        let mentionItem = info[indexPath.section].items[indexPath.row]
+//                        switch mentionItem {
+//                        case .Image(let url, _):
+//                            isvc.imageURL = url
+//                        default: break
+//                        }
+//                    }
+                }
+            }
+            default: break
         }
     }
     
     override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
-        if let textCell = sender as? UITableViewCell {
-            if let indexPath =  tableView.indexPathForCell(textCell) {
-                switch info[indexPath.section].title {
-                case Constants.Hashtag: fallthrough
-                case Constants.User:
-                    return true
-                case Constants.URLs:
-                    if let text = textCell.textLabel?.text {
-                        if let url = NSURL(string: text) {
-                            UIApplication.sharedApplication().openURL(url)
+        switch identifier {
+        case Storyboard.showSearch:
+            if let textCell = sender as? UITableViewCell {
+                if let indexPath =  tableView.indexPathForCell(textCell) {
+                    switch info[indexPath.section].title {
+                    case Constants.Hashtag: fallthrough
+                    case Constants.User:
+                        return true
+                    case Constants.URLs:
+                        if let text = textCell.textLabel?.text {
+                            if let url = NSURL(string: text) {
+                                UIApplication.sharedApplication().openURL(url)
+                            }
                         }
+                    default: break
                     }
-                default: break
                 }
             }
+        case Storyboard.showImage:
+            return true
+        default: break
         }
         return false
     }

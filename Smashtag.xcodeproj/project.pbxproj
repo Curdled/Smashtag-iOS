@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D8D310E81BB2E1EA00849896 /* MentionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D310E71BB2E1EA00849896 /* MentionTableViewController.swift */; };
+		D8E3BCAD1BB42AED00FFC5D5 /* ImageScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E3BCAC1BB42AED00FFC5D5 /* ImageScrollViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		D8ECAE3F1BB40860004DE9CB /* ImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8ECAE3E1BB40860004DE9CB /* ImageTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		EC6876171A898EF4006B5FDB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6876161A898EF4006B5FDB /* AppDelegate.swift */; };
 		EC68761C1A898EF4006B5FDB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC68761A1A898EF4006B5FDB /* Main.storyboard */; };
@@ -34,6 +35,7 @@
 
 /* Begin PBXFileReference section */
 		D8D310E71BB2E1EA00849896 /* MentionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentionTableViewController.swift; sourceTree = "<group>"; };
+		D8E3BCAC1BB42AED00FFC5D5 /* ImageScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageScrollViewController.swift; sourceTree = "<group>"; };
 		D8ECAE3E1BB40860004DE9CB /* ImageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageTableViewCell.swift; sourceTree = "<group>"; };
 		EC6876111A898EF4006B5FDB /* Smashtag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Smashtag.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC6876151A898EF4006B5FDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 			children = (
 				D8ECAE3E1BB40860004DE9CB /* ImageTableViewCell.swift */,
 				EC68761A1A898EF4006B5FDB /* Main.storyboard */,
+				D8E3BCAC1BB42AED00FFC5D5 /* ImageScrollViewController.swift */,
 				D8D310E71BB2E1EA00849896 /* MentionTableViewController.swift */,
 				EC6876361A898F4D006B5FDB /* TweetTableViewController.swift */,
 				EC6876411A8994BB006B5FDB /* TweetTableViewCell.swift */,
@@ -244,6 +247,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8D310E81BB2E1EA00849896 /* MentionTableViewController.swift in Sources */,
+				D8E3BCAD1BB42AED00FFC5D5 /* ImageScrollViewController.swift in Sources */,
 				EC6876171A898EF4006B5FDB /* AppDelegate.swift in Sources */,
 				EC68763F1A898FC6006B5FDB /* TwitterRequest.swift in Sources */,
 				D8ECAE3F1BB40860004DE9CB /* ImageTableViewCell.swift in Sources */,
