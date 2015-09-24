@@ -36,12 +36,16 @@ class TweetTableViewCell: UITableViewCell
                 for _ in tweet.media {
                     text += " 📷"
                 }
+                
+               
 
                 let newTweet = NSMutableAttributedString(string: text)
 
                 newTweet.colorStringAtIndexs(UIColor.redColor(), indexs: tweet.hashtags)
                 newTweet.colorStringAtIndexs(UIColor.blueColor(), indexs: tweet.urls)
                 newTweet.colorStringAtIndexs(UIColor.orangeColor(), indexs: tweet.userMentions)
+                
+                //newTweet.addAttribute(NSForegroundColorAttributeName, value: UIColor.brownColor(), range: tweet.media.)
 
                 tweetTextLabel?.attributedText = newTweet
                 tweetScreenNameLabel?.text = "\(tweet.user)" // tweet.user.description
