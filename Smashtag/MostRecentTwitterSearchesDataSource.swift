@@ -21,9 +21,14 @@ class MostRecentTwitterSearchesDataSource {
             return defaults.objectForKey(Constant.mostRecentSearchHistory) as? [String] ?? []
         }
         set {
-            print(newValue)
             defaults.setObject(newValue, forKey: Constant.mostRecentSearchHistory)
         }
+    }
+    
+    static func deleteRow (row: Int) {
+        var newArray = mostRecentTwitterSearches
+        newArray.removeAtIndex(row)
+        mostRecentTwitterSearches = newArray
     }
     
     static func appendValue(string: String) {
