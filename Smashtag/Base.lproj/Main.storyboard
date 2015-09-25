@@ -84,7 +84,13 @@
                             <outlet property="delegate" destination="MxJ-wT-guP" id="vqq-hV-YCT"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Smashtag" id="PID-lo-tbK"/>
+                    <navigationItem key="navigationItem" title="Smashtag" id="PID-lo-tbK">
+                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="YVD-qS-BKq">
+                            <connections>
+                                <segue destination="nXD-6x-aPn" kind="unwind" identifier="" unwindAction="unwindToRoot:" id="2IO-fh-TVy"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="jFR-6A-3Z6">
                         <autoresizingMask key="autoresizingMask"/>
                         <connections>
@@ -96,8 +102,60 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YdZ-xU-89r" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="nXD-6x-aPn" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-411" y="230"/>
+        </scene>
+        <!--Web View Controller-->
+        <scene sceneID="TSb-vg-Yh3">
+            <objects>
+                <viewController id="7Gg-e7-nXm" customClass="WebViewController" customModule="Smashtag" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="yxK-Uc-i9O"/>
+                        <viewControllerLayoutGuide type="bottom" id="Qr5-dr-u59"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ItE-j0-nfb">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HDq-Q7-aWG">
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="397-Ew-LES">
+                                <rect key="frame" x="280" y="290" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="1AH-G9-enk"/>
+                                    <constraint firstAttribute="width" constant="40" id="GId-FZ-MGW"/>
+                                </constraints>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="HDq-Q7-aWG" firstAttribute="top" secondItem="yxK-Uc-i9O" secondAttribute="bottom" id="8iC-Nq-MLq"/>
+                            <constraint firstItem="Qr5-dr-u59" firstAttribute="top" secondItem="HDq-Q7-aWG" secondAttribute="bottom" id="cYT-ac-2Ta"/>
+                            <constraint firstAttribute="trailing" secondItem="HDq-Q7-aWG" secondAttribute="trailing" id="mXC-Ck-Juj"/>
+                            <constraint firstItem="HDq-Q7-aWG" firstAttribute="leading" secondItem="ItE-j0-nfb" secondAttribute="leading" id="osN-vd-3ZG"/>
+                            <constraint firstItem="397-Ew-LES" firstAttribute="centerY" secondItem="HDq-Q7-aWG" secondAttribute="centerY" id="qZe-QP-WTg"/>
+                            <constraint firstItem="397-Ew-LES" firstAttribute="centerX" secondItem="HDq-Q7-aWG" secondAttribute="centerX" id="ybc-vp-CzX"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Dw0-ae-MqF">
+                        <barButtonItem key="backBarButtonItem" id="Obl-eW-jEF"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="rewind" id="qfI-te-iFF">
+                            <connections>
+                                <action selector="backButton:" destination="7Gg-e7-nXm" id="Cdq-Bm-iai"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="spinner" destination="397-Ew-LES" id="qZa-hf-u7u"/>
+                        <outlet property="webView" destination="HDq-Q7-aWG" id="87v-5M-jL5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SX3-00-dH7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="450" y="-502"/>
         </scene>
         <!--Mention Table View Controller-->
         <scene sceneID="SMd-yA-k7p">
@@ -164,10 +222,23 @@
                             <outlet property="delegate" destination="tkA-6p-L9T" id="VHc-kA-6AR"/>
                         </connections>
                     </tableView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="CFF-wi-nra">
+                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="7lr-VJ-dvZ">
+                            <connections>
+                                <segue destination="zel-Rk-cUx" kind="unwind" identifier="Unwind" unwindAction="unwindToRoot:" id="0j2-zn-tf7"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <segue destination="7Gg-e7-nXm" kind="show" identifier="Show Webpage" id="Hfc-bs-Pju"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Wu-oi-vPi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="zel-Rk-cUx" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="450" y="230"/>
+            <point key="canvasLocation" x="432" y="230"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="iHE-uy-XlJ">
@@ -181,7 +252,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="MxJ-wT-guP" kind="relationship" relationship="rootViewController" id="GD6-Kk-cfo"/>
+                        <segue destination="MxJ-wT-guP" kind="relationship" relationship="rootViewController" id="hAY-2o-Y6v"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z6c-Oa-w39" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -225,7 +296,7 @@
                                             <rect key="frame" x="15" y="0.0" width="550" height="43"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -241,9 +312,16 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Item" systemItem="history" id="sBv-TN-W7Z"/>
-                    <navigationItem key="navigationItem" id="kwj-k2-iUz"/>
+                    <navigationItem key="navigationItem" id="kwj-k2-iUz">
+                        <barButtonItem key="rightBarButtonItem" title="History" systemItem="cancel" id="hx6-g1-DNQ">
+                            <connections>
+                                <segue destination="n8H-eD-i4a" kind="unwind" unwindAction="unwindToRoot:" id="DLq-f5-1J3"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="foQ-4U-tVd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="n8H-eD-i4a" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-403" y="955"/>
         </scene>
@@ -262,7 +340,7 @@
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Zrv-u7-zRn">
                                 <rect key="frame" x="290" y="290" width="20" height="20"/>
                             </activityIndicatorView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pkp-Gt-bsh">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pkp-Gt-bsh">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                             </scrollView>
                         </subviews>
@@ -276,11 +354,19 @@
                             <constraint firstItem="pkp-Gt-bsh" firstAttribute="bottom" secondItem="rVt-Yy-tYn" secondAttribute="top" id="pMk-1O-IZm"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="ZtV-gk-cga">
+                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="tWi-Vp-IZI">
+                            <connections>
+                                <segue destination="OWx-DV-zS0" kind="unwind" unwindAction="unwindToRoot:" id="zXA-Kq-76h"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="scrollView" destination="pkp-Gt-bsh" id="Tcz-ob-0S6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1zA-Sg-6aM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="OWx-DV-zS0" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1276" y="230"/>
         </scene>
@@ -319,6 +405,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="q2U-zK-5DF"/>
+        <segue reference="hAY-2o-Y6v"/>
     </inferredMetricsTieBreakers>
 </document>

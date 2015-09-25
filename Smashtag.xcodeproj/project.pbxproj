@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D814DB851BB44C15001EE01A /* MostRecentTwitterSearchesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D814DB841BB44C15001EE01A /* MostRecentTwitterSearchesDataSource.swift */; settings = {ASSET_TAGS = (); }; };
+		D814DB891BB44FF6001EE01A /* HistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D814DB881BB44FF5001EE01A /* HistoryTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		D85D4C241BB53FE800038A0B /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85D4C231BB53FE800038A0B /* WebViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		D8D310E81BB2E1EA00849896 /* MentionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D310E71BB2E1EA00849896 /* MentionTableViewController.swift */; };
 		D8E3BCAD1BB42AED00FFC5D5 /* ImageScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E3BCAC1BB42AED00FFC5D5 /* ImageScrollViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		D8ECAE3F1BB40860004DE9CB /* ImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8ECAE3E1BB40860004DE9CB /* ImageTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
@@ -34,6 +37,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D814DB841BB44C15001EE01A /* MostRecentTwitterSearchesDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MostRecentTwitterSearchesDataSource.swift; sourceTree = "<group>"; };
+		D814DB881BB44FF5001EE01A /* HistoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HistoryTableViewController.swift; path = ../HistoryTableViewController.swift; sourceTree = "<group>"; };
+		D85D4C231BB53FE800038A0B /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		D8D310E71BB2E1EA00849896 /* MentionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentionTableViewController.swift; sourceTree = "<group>"; };
 		D8E3BCAC1BB42AED00FFC5D5 /* ImageScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageScrollViewController.swift; sourceTree = "<group>"; };
 		D8ECAE3E1BB40860004DE9CB /* ImageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageTableViewCell.swift; sourceTree = "<group>"; };
@@ -93,11 +99,14 @@
 		EC6876131A898EF4006B5FDB /* Smashtag */ = {
 			isa = PBXGroup;
 			children = (
+				D814DB881BB44FF5001EE01A /* HistoryTableViewController.swift */,
 				D8ECAE3E1BB40860004DE9CB /* ImageTableViewCell.swift */,
 				EC68761A1A898EF4006B5FDB /* Main.storyboard */,
 				D8E3BCAC1BB42AED00FFC5D5 /* ImageScrollViewController.swift */,
 				D8D310E71BB2E1EA00849896 /* MentionTableViewController.swift */,
+				D85D4C231BB53FE800038A0B /* WebViewController.swift */,
 				EC6876361A898F4D006B5FDB /* TweetTableViewController.swift */,
+				D814DB841BB44C15001EE01A /* MostRecentTwitterSearchesDataSource.swift */,
 				EC6876411A8994BB006B5FDB /* TweetTableViewCell.swift */,
 				EC6876381A898FC6006B5FDB /* Twitter */,
 				EC6876141A898EF4006B5FDB /* Supporting Files */,
@@ -248,13 +257,16 @@
 			files = (
 				D8D310E81BB2E1EA00849896 /* MentionTableViewController.swift in Sources */,
 				D8E3BCAD1BB42AED00FFC5D5 /* ImageScrollViewController.swift in Sources */,
+				D814DB851BB44C15001EE01A /* MostRecentTwitterSearchesDataSource.swift in Sources */,
 				EC6876171A898EF4006B5FDB /* AppDelegate.swift in Sources */,
 				EC68763F1A898FC6006B5FDB /* TwitterRequest.swift in Sources */,
 				D8ECAE3F1BB40860004DE9CB /* ImageTableViewCell.swift in Sources */,
 				EC6876401A898FC6006B5FDB /* User.swift in Sources */,
 				EC6876371A898F4D006B5FDB /* TweetTableViewController.swift in Sources */,
+				D814DB891BB44FF6001EE01A /* HistoryTableViewController.swift in Sources */,
 				EC68763D1A898FC6006B5FDB /* MediaItem.swift in Sources */,
 				EC68763E1A898FC6006B5FDB /* Tweet.swift in Sources */,
+				D85D4C241BB53FE800038A0B /* WebViewController.swift in Sources */,
 				EC6876421A8994BB006B5FDB /* TweetTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

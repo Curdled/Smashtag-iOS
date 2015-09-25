@@ -26,7 +26,7 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate
             refresh()
         }
     }
-    
+
 
     
     // MARK: - View Controller Lifecycle
@@ -36,6 +36,11 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate
         tableView.estimatedRowHeight = tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
 
+        if let nav = self.navigationController?.viewControllers.first as? TweetTableViewController {
+            if nav == self {
+                navigationItem.rightBarButtonItem = nil
+            }
+        }
         refresh()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -162,7 +167,16 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate
 
     
     // MARK: - Navigation
-
+    
+    override func canPerformUnwindSegueAction(action: Selector, fromViewController: UIViewController, withSender sender: AnyObject) -> Bool {
+        if let first = navigationController?.viewControllers.first as? TweetTableViewController {
+            if first == self {
+                return true
+            }
+        }
+        return false
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         var destination = segue.destinationViewController
         if let navCon = destination as? UINavigationController {
@@ -181,4 +195,5 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate
         }
     }
     
+    @IBAction func unwindToRoot(sender: UIStoryboardSegue) { }
 }

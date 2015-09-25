@@ -91,6 +91,8 @@ class MentionTableViewController: UITableViewController {
         
         static let showSearch = "Show Search"
         static let showImage = "Show Image"
+        static let showWebpage = "Show Webpage"
+        static let Unwind = "Unwind"
     }
 
     
@@ -206,6 +208,12 @@ class MentionTableViewController: UITableViewController {
                     }
                 }
             }
+        case Storyboard.showWebpage:
+            if let url = sender as? NSURL {
+                if let wvc = destination as? WebViewController {
+                    wvc.webUrl = url
+                }
+            }
             default: break
         }
     }
@@ -222,7 +230,7 @@ class MentionTableViewController: UITableViewController {
                     case Constants.URLs:
                         if let text = textCell.textLabel?.text {
                             if let url = NSURL(string: text) {
-                                UIApplication.sharedApplication().openURL(url)
+                                performSegueWithIdentifier(Storyboard.showWebpage, sender: url)
                             }
                         }
                     default: break
@@ -230,6 +238,11 @@ class MentionTableViewController: UITableViewController {
                 }
             }
         case Storyboard.showImage:
+            return true
+        case Storyboard.showWebpage:
+            return true
+        case Storyboard.Unwind:
+            print("here")
             return true
         default: break
         }

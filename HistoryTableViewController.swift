@@ -23,6 +23,12 @@ class HistoryTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let nav = self.navigationController?.viewControllers.first as? HistoryTableViewController    {
+            if nav == self {
+                navigationItem.rightBarButtonItem = nil
+            }
+        }
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -114,6 +120,15 @@ class HistoryTableViewController: UITableViewController {
         default: break
         }
     }
-
-
+    
+    @IBAction func unwindToRoot(sender: UIStoryboardSegue) { }
+    
+    override func canPerformUnwindSegueAction(action: Selector, fromViewController: UIViewController, withSender sender: AnyObject) -> Bool {
+        if let first = navigationController?.viewControllers.first as? HistoryTableViewController {
+            if first == self {
+                return true
+            }
+        }
+        return false
+    }
 }
