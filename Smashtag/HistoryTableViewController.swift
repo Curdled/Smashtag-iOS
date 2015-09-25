@@ -76,7 +76,6 @@ class HistoryTableViewController: UITableViewController {
         if editingStyle == .Delete {
             MostRecentTwitterSearchesDataSource.deleteRow(indexPath.row)
             mostRecentSearches = MostRecentTwitterSearchesDataSource.mostRecentTwitterSearches
-            print(indexPath)
 
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }

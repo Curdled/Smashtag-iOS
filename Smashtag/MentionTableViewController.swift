@@ -101,9 +101,6 @@ class MentionTableViewController: UITableViewController {
 
         tableView.estimatedRowHeight = tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
-        
-        
-        // navigationItem.hidesBackButton = false
     }
 
 
@@ -242,7 +239,6 @@ class MentionTableViewController: UITableViewController {
         case Storyboard.showWebpage:
             return true
         case Storyboard.Unwind:
-            print("here")
             return true
         default: break
         }

@@ -109,6 +109,8 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate
     
     private struct Storyboard {
         static let CellReuseIdentifier = "Tweet"
+        static let ShowMention = "Show Mention"
+        static let ShowImages = "Show Images"
     }
     
     // MARK: - UITableViewDataSource
@@ -184,15 +186,23 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate
                 destination = visible
             }
         }
-        if let mtvc = destination as? MentionTableViewController {
-            switch segue.identifier! {
-            case "Show Mention":
-                if let cell = sender as? TweetTableViewCell {
-                    mtvc.currentTweet = cell.tweet
+        if let identifier = segue.identifier {
+            switch identifier {
+            case Storyboard.ShowMention:
+                if let mtvc = destination as? MentionTableViewController {
+                    if let cell = sender as? TweetTableViewCell {
+                        mtvc.currentTweet = cell.tweet
+                    }
+                }
+            case Storyboard.ShowImages:
+                if let icvc = destination as? ImageCollectionViewController {
+                    let t = tweets.reduce([], combine: +)
+                    icvc.tweets = t
                 }
             default: break
             }
         }
+    
     }
     
     @IBAction func unwindToRoot(sender: UIStoryboardSegue) { }

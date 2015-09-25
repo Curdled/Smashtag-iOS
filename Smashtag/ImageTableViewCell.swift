@@ -38,7 +38,6 @@ class ImageTableViewCell: UITableViewCell {
                 if let data = NSData(contentsOfURL: url) {
                     dispatch_async(dispatch_get_main_queue()) {
                         if url == self.imageURL {
-                            print(UIImage(data: data))
                             self.mentionImage.image = UIImage(data: data)
                             self.spinner?.stopAnimating()
                         }

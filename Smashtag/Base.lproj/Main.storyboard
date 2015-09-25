@@ -4,8 +4,87 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
+        <!--Image Collection View Controller-->
+        <scene sceneID="ntj-zZ-uBP">
+            <objects>
+                <collectionViewController id="PXK-p6-hbF" customClass="ImageCollectionViewController" customModule="Smashtag" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="VTE-de-3iF">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="aks-ah-Uvm">
+                            <size key="itemSize" width="100" height="60"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Image Icon" id="Oij-9K-z2T" customClass="ImageCollectionViewCell" customModule="Smashtag" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="64" width="100" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="100" height="60"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gap-kT-yAE">
+                                            <rect key="frame" x="0.0" y="0.0" width="100" height="52"/>
+                                            <subviews>
+                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="t5t-ud-3m6">
+                                                    <rect key="frame" x="40" y="16" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="vHo-or-Cwk"/>
+                                                    </constraints>
+                                                </activityIndicatorView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2bn-aY-uMs">
+                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="52"/>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstItem="t5t-ud-3m6" firstAttribute="centerX" secondItem="Gap-kT-yAE" secondAttribute="centerX" id="6Zp-51-3zt"/>
+                                                <constraint firstAttribute="bottom" secondItem="2bn-aY-uMs" secondAttribute="bottom" id="HRA-1g-1QN"/>
+                                                <constraint firstAttribute="trailing" secondItem="2bn-aY-uMs" secondAttribute="trailing" id="Y0H-xK-0j0"/>
+                                                <constraint firstItem="2bn-aY-uMs" firstAttribute="leading" secondItem="Gap-kT-yAE" secondAttribute="leading" id="n32-sS-Wvl"/>
+                                                <constraint firstItem="t5t-ud-3m6" firstAttribute="centerY" secondItem="Gap-kT-yAE" secondAttribute="centerY" id="twC-Q3-VVe"/>
+                                                <constraint firstItem="2bn-aY-uMs" firstAttribute="top" secondItem="Gap-kT-yAE" secondAttribute="top" id="vEJ-zC-3kz"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="bottomMargin" secondItem="Gap-kT-yAE" secondAttribute="bottom" id="OFR-9n-tMS"/>
+                                    <constraint firstItem="Gap-kT-yAE" firstAttribute="leading" secondItem="Oij-9K-z2T" secondAttribute="leading" id="eML-1I-GOQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="Gap-kT-yAE" secondAttribute="trailing" id="mJD-hr-vDx"/>
+                                    <constraint firstItem="Gap-kT-yAE" firstAttribute="top" secondItem="Oij-9K-z2T" secondAttribute="top" id="rEA-Pq-XGX"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="imageView" destination="2bn-aY-uMs" id="2gt-VI-F4l"/>
+                                    <outlet property="spinner" destination="t5t-ud-3m6" id="S3o-JE-YtZ"/>
+                                    <segue destination="MxJ-wT-guP" kind="show" identifier="Show Tweet" id="Zub-GK-uiK"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="PXK-p6-hbF" id="F5o-2L-Qqg"/>
+                            <outlet property="delegate" destination="PXK-p6-hbF" id="yrF-V4-ySy"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" id="ibR-jY-t7d">
+                        <barButtonItem key="rightBarButtonItem" systemItem="stop" id="99j-gF-pAo">
+                            <connections>
+                                <segue destination="MAa-Uy-fGx" kind="unwind" unwindAction="unwindToRoot:" id="Duz-1K-n5G"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7Ub-jc-Fpq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="MAa-Uy-fGx" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="-395" y="-603"/>
+        </scene>
         <!--Smashtag-->
         <scene sceneID="OXZ-Mo-UfU">
             <objects>
@@ -85,11 +164,18 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Smashtag" id="PID-lo-tbK">
-                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="YVD-qS-BKq">
-                            <connections>
-                                <segue destination="nXD-6x-aPn" kind="unwind" identifier="" unwindAction="unwindToRoot:" id="2IO-fh-TVy"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="stop" id="yfI-ev-N6Z">
+                                <connections>
+                                    <segue destination="BhD-3e-drP" kind="unwind" unwindAction="unwindToRoot:" id="uMx-OP-vmW"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="camera" id="C55-aL-rs4">
+                                <connections>
+                                    <segue destination="PXK-p6-hbF" kind="show" identifier="Show Images" id="wAO-fd-Ekd"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="jFR-6A-3Z6">
                         <autoresizingMask key="autoresizingMask"/>
@@ -102,7 +188,7 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YdZ-xU-89r" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="nXD-6x-aPn" userLabel="Exit" sceneMemberID="exit"/>
+                <exit id="BhD-3e-drP" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-411" y="230"/>
         </scene>
@@ -141,12 +227,18 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Dw0-ae-MqF">
-                        <barButtonItem key="backBarButtonItem" id="Obl-eW-jEF"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="rewind" id="qfI-te-iFF">
-                            <connections>
-                                <action selector="backButton:" destination="7Gg-e7-nXm" id="Cdq-Bm-iai"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="stop" id="rI0-qM-o85">
+                                <connections>
+                                    <segue destination="xhu-Ty-A9w" kind="unwind" unwindAction="unwindToRoot:" id="P4D-rh-Vcc"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="rewind" id="qfI-te-iFF">
+                                <connections>
+                                    <action selector="backButton:" destination="7Gg-e7-nXm" id="Cdq-Bm-iai"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="spinner" destination="397-Ew-LES" id="qZa-hf-u7u"/>
@@ -154,8 +246,9 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SX3-00-dH7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="xhu-Ty-A9w" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="450" y="-502"/>
+            <point key="canvasLocation" x="432" y="-603"/>
         </scene>
         <!--Mention Table View Controller-->
         <scene sceneID="SMd-yA-k7p">
@@ -224,7 +317,7 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="CFF-wi-nra">
-                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="7lr-VJ-dvZ">
+                        <barButtonItem key="rightBarButtonItem" systemItem="stop" id="7lr-VJ-dvZ">
                             <connections>
                                 <segue destination="zel-Rk-cUx" kind="unwind" identifier="Unwind" unwindAction="unwindToRoot:" id="0j2-zn-tf7"/>
                             </connections>
@@ -252,12 +345,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="MxJ-wT-guP" kind="relationship" relationship="rootViewController" id="hAY-2o-Y6v"/>
+                        <segue destination="MxJ-wT-guP" kind="relationship" relationship="rootViewController" id="RZE-un-NKt"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z6c-Oa-w39" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1223" y="230"/>
+            <point key="canvasLocation" x="-1236" y="230"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="iU1-Hm-aGt">
@@ -274,9 +367,9 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fXO-io-kvM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1212" y="955"/>
+            <point key="canvasLocation" x="-1236" y="955"/>
         </scene>
-        <!--Item-->
+        <!--History Table View Controller-->
         <scene sceneID="NYA-HR-OhP">
             <objects>
                 <tableViewController id="sga-lE-ygt" customClass="HistoryTableViewController" customModule="Smashtag" customModuleProvider="target" sceneMemberID="viewController">
@@ -311,9 +404,9 @@
                             <outlet property="delegate" destination="sga-lE-ygt" id="QAb-OQ-lXI"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Item" systemItem="history" id="sBv-TN-W7Z"/>
+                    <tabBarItem key="tabBarItem" title="" systemItem="history" id="sBv-TN-W7Z"/>
                     <navigationItem key="navigationItem" id="kwj-k2-iUz">
-                        <barButtonItem key="rightBarButtonItem" title="History" systemItem="cancel" id="hx6-g1-DNQ">
+                        <barButtonItem key="rightBarButtonItem" systemItem="stop" id="hx6-g1-DNQ">
                             <connections>
                                 <segue destination="n8H-eD-i4a" kind="unwind" unwindAction="unwindToRoot:" id="DLq-f5-1J3"/>
                             </connections>
@@ -323,7 +416,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="foQ-4U-tVd" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="n8H-eD-i4a" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-403" y="955"/>
+            <point key="canvasLocation" x="-395" y="955"/>
         </scene>
         <!--Image Scroll View Controller-->
         <scene sceneID="ib9-PH-wTX">
@@ -355,7 +448,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ZtV-gk-cga">
-                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="tWi-Vp-IZI">
+                        <barButtonItem key="rightBarButtonItem" systemItem="stop" id="tWi-Vp-IZI">
                             <connections>
                                 <segue destination="OWx-DV-zS0" kind="unwind" unwindAction="unwindToRoot:" id="zXA-Kq-76h"/>
                             </connections>
@@ -369,21 +462,6 @@
                 <exit id="OWx-DV-zS0" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1276" y="230"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="61c-Ep-0VM">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qej-7H-fhj" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cxv-sk-VxR">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="g9J-zk-d0z" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1223" y="230"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="dC1-d8-hrO">

@@ -14,11 +14,6 @@ class ImageScrollViewController: UIViewController, UIScrollViewDelegate {
     
     private var scrollViewDidScrollOrZoom = false
     
-    @IBOutlet var viewThing: UIView! {
-        didSet {
-            print("viewThing = \(viewThing)")
-        }
-    }
     
     @IBOutlet weak var scrollView: UIScrollView! {
         didSet {
@@ -56,7 +51,6 @@ class ImageScrollViewController: UIViewController, UIScrollViewDelegate {
             return imageView.image
         }
         set {
-            print(newValue)
             if let newImage = newValue {
                 imageView.image = newImage
                 imageView.sizeToFit()
